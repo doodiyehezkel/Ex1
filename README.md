@@ -1,12 +1,12 @@
 Names: 
  
-	 Chen Maman
+	 Chen Maman - 
 
-	 Tom Suad
+	 Tom Suad - 203128301
 
-	 David Yehezkel
+	 David Yehezkel - 201133998
 
-	 Roie Yadai
+	 Roie Yadai - 203228556
 
 Programming language: This project was implemented with Java language.
 Purpose: Find the shortest route from starting point to destination point without crossing through the black-list points ,that indicate that the route is not valid.
