@@ -11,112 +11,84 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
  *
- * @author Most601
+ * @author 
  */
 public class Test_EX {
     In in ;
-    Graph G ;
+    Graph Gr ;
     
     public Test_EX(String Graf , String Test){
         
         in = new In(Graf);
-        G = new Graph(in);
-        
+        Gr = new Graph(in);
         
         long start = System.currentTimeMillis();
 
-        
-    
-        
-        //-------------------------------------------------------------------
-        
-    	
         try {
             FileReader fr = new FileReader(Test);
             BufferedReader br = new BufferedReader(fr);
-            String str;
-            str = br.readLine();
-            int sum = Integer.parseInt(str);
+            String s;
+            s = br.readLine();
+            int result = Integer.parseInt(s);
             
-        	PrintWriter out;
+        	PrintWriter outp;
         	OutputStream os = new FileOutputStream("ans.txt");
         	OutputStreamWriter osw = new OutputStreamWriter(os);
-        	out = new PrintWriter(osw,true);
-        	out.println(sum);
-            for (int i = 0; i < sum; i++) {
-            	ArrayList<Integer> num = new ArrayList<Integer>();
-            	str = br.readLine();
-            	String[] details = str.split(" ");
-            	int strnum = 0;
-            	int from = Integer.parseInt(details[strnum++]);
-            	int to = Integer.parseInt(details[strnum++]);
-            	int SumBL = Integer.parseInt(details[strnum++]);
-            	for (int j = 0; j < SumBL; j++) {
-            		num.add(Integer.parseInt(details[strnum++]));
+        	outp = new PrintWriter(osw,true);
+        	outp.println(result);
+         
+        	for (int i = 0; i < result; i++) {
+            
+        		ArrayList<Integer> n = new ArrayList<Integer>();
+            	s = br.readLine();
+            	
+            	String[] details = s.split(" ");
+            	int strn = 0;
+            	int from = Integer.parseInt(details[strn++]);
+            	int to = Integer.parseInt(details[strn++]);
+            	int Sumbl = Integer.parseInt(details[strn++]);
+            	
+            	for (int j = 0; j < Sumbl; j++) {
+            		n.add(Integer.parseInt(details[strn++]));
 				}
-            	G.blin(num);
-                Graph_algo sp1 = new Graph_algo(G, from);
+            	
+            	Gr.blin(n);
+                Graph_algo sp1 = new Graph_algo(Gr, from);
                 
-                //prints from to dis 
-                if (sp1.hasPathTo(to) && sp1.distTo(to) <  Double.POSITIVE_INFINITY ) {
-                	//System.out.println(from+" to "+to+" "+sp1.distTo(to));
-                  System.out.println(str+" "+sp1.distTo(to));
-                }
-                else {
-                	//System.out.println(from+" to "+to+" "+sp1.distTo(to));
-                	System.out.println(str+" "+sp1.distTo(to));
+                if (sp1.hasPathTo(to) && sp1.distTo(to) <  Double.POSITIVE_INFINITY ) 
+                {
+                  System.out.println(s+" "+sp1.distTo(to));
                 }
                 
+                else 
+                {
+                	System.out.println(s+" "+sp1.distTo(to));
+                }
                 
-                
-//                PrintWriter pr = new PrintWriter("test12222.txt");
-           
-                
-                	out.println(str + " " + sp1.distTo(to));
+                	outp.println(s + " " + sp1.distTo(to));
                
-               
-//                
-//                FileWriter fw = new FileWriter("test1-1.txt");
-//                PrintWriter outs = new PrintWriter(fw);
-//                outs.println(sum);
-//                outs.println(str+" "+sp1.distTo(to));
-                
-                
-                G.blinrollback();
+                Gr.blinrollback();
 			}
+        	
             br.close();
             fr.close();
-        } catch (IOException ex) {
-            System.out.print("Error reading file\n" + ex);
+        } 
+        catch (IOException ex) {
+            System.out.print("error reading file\n" + ex);
             System.exit(2);
         }
-    
         
         long end = System.currentTimeMillis();
-        System.out.println("ONLY TEST time = " + (end-start)/1000. + " seconds");
-        
-     
-        
+        System.out.println(" test time = " + (end-start)/1000. + " seconds");
         
     }
     
     
-    
-    
-    
-    
-    
-    
     public static void main(String[] args) {
-        
         
         long start = System.currentTimeMillis();
         String Test = "test1.txt";
@@ -124,85 +96,10 @@ public class Test_EX {
         Test_EX a = new Test_EX(Graf ,Test );
         
         long end = System.currentTimeMillis();
-        System.out.println("WITH GRAF time = " + (end-start)/1000. + " seconds");
-        
-        
+        System.out.println("graf time = " + (end-start)/1000. + " seconds");
         
         
     }
         
-        
-
-        //-------------------------------------------------------------------
-//        
-
-//      In in = new In("E:\\New folder\\largeEWD.txt");
-//      Graph G = new Graph(in);
-//    	long start = System.currentTimeMillis();
-//		
-//		
-//		
-//
-//
-//        
-//        try {
-//            FileReader fr = new FileReader("E:\\New folder\\test3.txt");
-//            BufferedReader br = new BufferedReader(fr);
-//            String str;
-//            str = br.readLine();
-//            int sum = Integer.parseInt(str);
-//            for (int i = 0; i < sum; i++) {
-//            	ArrayList<Integer> num = new ArrayList<Integer>();
-//            	str = br.readLine();
-//            	String[] details = str.split(" ");
-//            	int strnum = 0;
-//            	int from = Integer.parseInt(details[strnum++]);
-//            	int to = Integer.parseInt(details[strnum++]);
-//            	int SumBL = Integer.parseInt(details[strnum++]);
-//            	for (int j = 0; j < SumBL; j++) {
-//            		num.add(Integer.parseInt(details[strnum++]));
-//				}
-//            	G.BLIn(num);
-//                Graph_algo sp1 = new Graph_algo(G, from);
-//                
-//                //prints from to dis 
-//                if (sp1.hasPathTo(to) && sp1.distTo(to) < 100 ) {
-//           //     	System.out.println("%d to %d (%f)  ", from, to, sp1.distTo(to));
-//                  System.out.println(str+" "+sp1.distTo(to));
-//                }
-//                else {
-//          //      	System.out.println("%d to %d (%f)  ", from, to, sp1.distTo(to));
-//                	System.out.println(str+" inf");
-//                }
-//                
-//                
-//                PrintWriter pr = new PrintWriter("E:\\New folder\\test1-1.txt");
-//             
-//                
-//                pr.write(str+"\n");
-//                
-////                
-////                FileWriter fw = new FileWriter("E:\\New folder\\test1-1.txt");
-////                PrintWriter outs = new PrintWriter(fw);
-////                outs.println(sum);
-////                outs.println(str+" "+sp1.distTo(to));
-////                
-//                
-//                G.BLOut();
-//			}
-//            br.close();
-//            fr.close();
-//        } catch (IOException ex) {
-//            System.out.print("Error reading file\n" + ex);
-//            System.exit(2);
-//        }
-//    
-//        
-//        
-//        long end = System.currentTimeMillis();
-//        System.out.println("Selection Sort time = " + (end-start)/1000. + " seconds");
-//        
-//    }
-//   
     
 }
