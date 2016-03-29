@@ -44,11 +44,11 @@ import java.util.Iterator;
 public class Graph {
     private static final String NEWLINE = System.getProperty("line.separator");
 
-    private final int V;      // ξρτψ χεγχεγιν          // number of vertices in this digraph
-    private int E;            // ξρτψ δχφαεϊ          // number of edges in this digraph
-    private Bag<DirectedEdge>[] adj; //δωλπιν ωμ δχεγχεγ ωςμιε ξγεαψ     // adj[v] = adjacency list for vertex v
+    private final int V;      // Γ®Γ±Γ΄ΓΈ Γ·Γ¥Γ£Γ·Γ¥Γ£Γ©Γ­          // number of vertices in this digraph
+    private int E;            // Γ®Γ±Γ΄ΓΈ Γ¤Γ·Γ¶Γ΅Γ¥ΓΊ          // number of edges in this digraph
+    private Bag<DirectedEdge>[] adj; //Γ¤ΓΉΓ«Γ°Γ©Γ­ ΓΉΓ¬ Γ¤Γ·Γ¥Γ£Γ·Γ¥Γ£ ΓΉΓ²Γ¬Γ©Γ¥ Γ®Γ£Γ¥Γ΅ΓΈ     // adj[v] = adjacency list for vertex v
     private int[] indegree;             // indegree[v] = indegree of vertex v
-    private Queue<Double> q = new LinkedList<Double>() ; // ϊεψ ωμ γΰαμιν ωξΰελρο αϊεκ μιπχγμιρθ
+    private Queue<Double> q = new LinkedList<Double>() ; // ΓΊΓ¥ΓΈ ΓΉΓ¬ Γ£Γ Γ΅Γ¬Γ©Γ­ ΓΉΓ®Γ Γ¥Γ«Γ±Γ― Γ΅ΓΊΓ¥Γª Γ¬Γ©Γ°Γ·Γ£Γ¬Γ©Γ±Γ¨
     /**
      * Initializes an empty edge-weighted digraph with <tt>V</tt> vertices and 0 edges.
      *
@@ -56,16 +56,16 @@ public class Graph {
      * @throws IllegalArgumentException if <tt>V</tt> < 0
      */
     public Graph(int V) {
-    	// ωεΰμ δΰν ξρτψ δχεγψεγιν χθο ξ0 ωιζψεχ ΰχρτωιΰο 
+    	// ΓΉΓ¥Γ Γ¬ Γ¤Γ Γ­ Γ®Γ±Γ΄ΓΈ Γ¤Γ·Γ¥Γ£ΓΈΓ¥Γ£Γ©Γ­ Γ·Γ¨Γ― Γ®0 ΓΉΓ©Γ¦ΓΈΓ¥Γ· Γ Γ·Γ±Γ΄ΓΉΓ©Γ Γ― 
         if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
-        // ΰηψϊ ϊςγλο ξωϊπδ ξημχεϊ ααπΰι ζδ 
+        // Γ Γ§ΓΈΓΊ ΓΊΓ²Γ£Γ«Γ― Γ®ΓΉΓΊΓ°Γ¤ Γ®Γ§Γ¬Γ·Γ¥ΓΊ Γ΅Γ΅Γ°Γ Γ© Γ¦Γ¤ 
         this.V = V;
         this.E = 0;
         this.indegree = new int[V];
-        adj = (Bag<DirectedEdge>[]) new Bag[V];// ξωϊπδ ωξλιμ μϊελε ΰϊ δξρμεμ ξπχεγδ ξεφΰ  μπχεγδ ιςγ 
+        adj = (Bag<DirectedEdge>[]) new Bag[V];// Γ®ΓΉΓΊΓ°Γ¤ ΓΉΓ®Γ«Γ©Γ¬ Γ¬ΓΊΓ¥Γ«Γ¥ Γ ΓΊ Γ¤Γ®Γ±Γ¬Γ¥Γ¬ Γ®Γ°Γ·Γ¥Γ£Γ¤ Γ®Γ¥Γ¶Γ   Γ¬Γ°Γ·Γ¥Γ£Γ¤ Γ©Γ²Γ£ 
         for (int v = 0; v < V; v++)
             adj[v] = new Bag<DirectedEdge>();
-        // δωξδ ωμ λμ δξχεγεϊ μϊεκ δξωϊπδ ADJ ΰϊ λμ δπχεγεϊ 
+        // Γ¤ΓΉΓ®Γ¤ ΓΉΓ¬ Γ«Γ¬ Γ¤Γ®Γ·Γ¥Γ£Γ¥ΓΊ Γ¬ΓΊΓ¥Γª Γ¤Γ®ΓΉΓΊΓ°Γ¤ ADJ Γ ΓΊ Γ«Γ¬ Γ¤Γ°Γ·Γ¥Γ£Γ¥ΓΊ 
     }
 
     /**
@@ -227,7 +227,9 @@ public class Graph {
      *         followed by the <em>V</em> adjacency lists of edges
      */
 	 ArrayList<Integer> num = new ArrayList<Integer>();
-
+/*
+ *put all BL on arrays and take all weight of bl and make it max value 
+*/
     
     public void blin(ArrayList<Integer> num2){
     
@@ -245,6 +247,9 @@ public class Graph {
 		}
     	 
     }
+    /*
+     * retstor all original graf weight  
+    */
     public void blinrollback(){
    	 for (int i = 0; i < num.size(); i++) {
 			
@@ -257,26 +262,9 @@ public class Graph {
 			}
 		} 
    }
-//    public void n(){
-//    	 
-//    	 for (int i = 0; i < num.size(); i++) {
-//			num.add(num2.get(i));
-//			Bag B=adj[num2.get(i)];
-//			Iterator It = B.iterator();
-//			for (int j = 0;  It.hasNext()==true; j++) {
-//				DirectedEdge e= (DirectedEdge)It.next();
-//				q.add(e.weight());
-//						
-//			}
-//		}
-//    	 
- //   }
-   
-    
- 
-    
-    
-    
+/*
+*func to string print to screen 
+*/
     public String toString() {
         StringBuilder s = new StringBuilder();
         s.append(V + " " + E + NEWLINE);
