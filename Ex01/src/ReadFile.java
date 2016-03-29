@@ -1,5 +1,11 @@
 
 
+/*
+*class for read from file all the data and wright in new file all the result 
+*/
+
+
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,6 +15,7 @@ import java.io.FileWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 
 public class ReadFile {
 
